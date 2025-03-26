@@ -1,0 +1,11 @@
+numpy==1.26
+opencv-python
+torch
+torchvision
+ultralytics
+
+python-dotenv==1.0.0
+pytest==8.2
+setuptools>=42
+wheel
+autopep8

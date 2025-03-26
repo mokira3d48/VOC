@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "voc"
+version = "0.1.0"
+description = "Visual Object Collector from image data."
+readme = "README.md"
+authors = [
+    { name = "Arnold Mokira", email = "dr.mokira@gmail.com" },
+]
+license = { file = "LICENSE" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+keywords = ["object-detection", "yolovx", "image-extraction"]
+dependencies = [
+    "requests>=2.25.1",
+    "python-dotenv==1.0.0",
+    "opencv-python",
+    "numpy",
+    "torch",
+    "torchvision",
+    "ultralytics",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/mokira3d48/VOC"
+#"Bug Tracker" = "https://github.com/your-username/my-python-package/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+voc = "voc.__main__:main"
