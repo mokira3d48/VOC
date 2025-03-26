@@ -1,5 +1,6 @@
 Pyyaml
-numpy==1.26
+numpy
+tqdm
 opencv-python
 torch
 torchvision

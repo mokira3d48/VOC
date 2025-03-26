@@ -21,6 +21,7 @@ dependencies = [
     "requests>=2.25.1",
     "python-dotenv==1.0.0",
     "Pyyaml",
+    "tqdm",
     "numpy",
     "opencv-python",
     "torch",

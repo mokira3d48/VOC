@@ -1,0 +1,7 @@
+pipeline:
+  0:
+    weights: res/models/lpr.pt
+    threshold: 0.50
+  1:
+    weights: res/models/npr.pt
+    threshold: 0.30

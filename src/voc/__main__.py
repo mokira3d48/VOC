@@ -2,8 +2,13 @@ import os
 import logging
 import logging.config
 from argparse import ArgumentParser, FileType
+from shutil import move
 
 import yaml
+import cv2 as cv
+from tqdm import tqdm
+
+from voc.inference import Inference
 
 logging.config.fileConfig('logging.conf')
 LOG = logging.getLogger('voc')
@@ -25,6 +30,7 @@ def main():
     params = yaml.safe_load(args.params)
     inputs = args.input
     outputs = args.output if args.output else 'outputs'
+    print(params)
 
     if not os.path.exists(inputs):
         print(ERR_ + f"No such file or directory at {inputs}")
@@ -35,9 +41,26 @@ def main():
     else:
         image_files.append(os.path.basename(inputs))
         inputs = os.path.dirname(inputs)
+
+    output_res = os.path.join(outputs, "results")
     os.makedirs(outputs, exist_ok=True)
+    os.makedirs(output_res, exist_ok=True)
 
+    inference = Inference(params)
+    iteration = tqdm(
+        image_files, desc="Object extraction", total=len(image_files))
 
+    for image_file in iteration:
+        file_path = os.path.join(inputs, image_file)
+        image = cv.imread(file_path)
+        images = inference(image)
+        if not images:
+            continue
+        output_file = os.path.join(outputs, image_file)
+        move(file_path, output_file)
+        for i, img in enumerate(images):
+            res_img = os.path.join(output_res, f"{image_file}.{i + 1}.png")
+            cv.imwrite(res_img, img)
 
 
 if __name__ == '__main__':
