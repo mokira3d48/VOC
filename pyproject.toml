@@ -20,8 +20,9 @@ keywords = ["object-detection", "yolovx", "image-extraction"]
 dependencies = [
     "requests>=2.25.1",
     "python-dotenv==1.0.0",
-    "opencv-python",
+    "Pyyaml",
     "numpy",
+    "opencv-python",
     "torch",
     "torchvision",
     "ultralytics",

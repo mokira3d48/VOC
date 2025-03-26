@@ -1,3 +1,4 @@
+Pyyaml
 numpy==1.26
 opencv-python
 torch
