@@ -198,7 +198,7 @@ class ObjectDetection(object):
         indexes = list(indexes)
         objs_detected = [
             o for i, o in enumerate(objs_detected) if i in indexes]
-        for o in objs_detected: LOG.debug(o)
+        # for o in objs_detected: LOG.debug(o)
         return objs_detected
 
     def __call__(self, img):

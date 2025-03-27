@@ -1,6 +1,6 @@
 pipeline:
   0:
-    weights: res/models/lpr.pt
+    weights: res/models/last.pt
     threshold: 0.50
   1:
     weights: res/models/npr.pt

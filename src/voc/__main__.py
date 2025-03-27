@@ -50,6 +50,7 @@ def main():
     iteration = tqdm(
         image_files, desc="Object extraction", total=len(image_files))
 
+    num_processed = 0
     for image_file in iteration:
         file_path = os.path.join(inputs, image_file)
         image = cv.imread(file_path)
@@ -57,10 +58,14 @@ def main():
         if not images:
             continue
         output_file = os.path.join(outputs, image_file)
-        move(file_path, output_file)
+        if not os.path.isfile(output_file):
+            move(file_path, output_file)
         for i, img in enumerate(images):
             res_img = os.path.join(output_res, f"{image_file}.{i + 1}.png")
             cv.imwrite(res_img, img)
+        tqdm.write(f"Image processed: {image_file}")
+        num_processed += 1
+    print(f"{num_processed} processed on {len(image_file)}")
 
 
 if __name__ == '__main__':
